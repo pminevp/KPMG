@@ -54,6 +54,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -195,7 +197,18 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Data\CFModels.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CFModels.edmx</DependentUpon>
+      <LastGenOutput>CFModels.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Data\CFModels.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CFModels.edmx</DependentUpon>
+      <LastGenOutput>CFModels.cs</LastGenOutput>
+    </Content>
     <Content Include="Default.aspx" />
+    <Content Include="Factory\ComputerFactory.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -205,6 +218,13 @@
     <Content Include="Account\Web.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="Data\CFModels.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CFModels.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Data\CFModels.edmx.diagram">
+      <DependentUpon>CFModels.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -350,12 +370,58 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Data\AspNetRole.cs">
+      <DependentUpon>CFModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\AspNetUser.cs">
+      <DependentUpon>CFModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\AspNetUserClaim.cs">
+      <DependentUpon>CFModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\AspNetUserLogin.cs">
+      <DependentUpon>CFModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\CFModels.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CFModels.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\CFModels.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CFModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\CFModels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CFModels.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\tblComputerConfiguration.cs">
+      <DependentUpon>CFModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\tblComputerPart.cs">
+      <DependentUpon>CFModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\tblComputerPartType.cs">
+      <DependentUpon>CFModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\tblConfigurePart.cs">
+      <DependentUpon>CFModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Factory\ComputerFactory.aspx.cs">
+      <DependentUpon>ComputerFactory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Factory\ComputerFactory.aspx.designer.cs">
+      <DependentUpon>ComputerFactory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -395,6 +461,19 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CF.Managers\CF.Managers.csproj">
+      <Project>{C4B59DBC-6380-4F35-A18E-B4C656ADABA1}</Project>
+      <Name>CF.Managers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CF.Models\CF.Models.csproj">
+      <Project>{892E3253-404E-426C-B0B5-280E5A9F9E40}</Project>
+      <Name>CF.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
